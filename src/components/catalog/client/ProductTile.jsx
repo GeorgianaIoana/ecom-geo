@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 
 export const ProductTile = (props) => {
@@ -8,7 +8,7 @@ export const ProductTile = (props) => {
   const productUrl = `/products/${id}`;
 
   return (
-    <article className="w-full">
+    <article className="w-full px-10">
       <header className="flex flex-col items-center justify-between gap-4 mb-4">
         <Link href={productUrl} title={title}>
           <Image

@@ -5,11 +5,10 @@ import { useContext, useEffect, useState } from 'react';
 import { uiContext } from '@/contexts';
 
 export const ProductGrid = () => {
-  const { itemsPerRow } = useContext(uiContext);
+  const { itemsPerRow, pagination } = useContext(uiContext);
+  const { perPage, page } = pagination;
   const { products, loading, error } = useProducts();
   const [paginatedProducts, setPaginatedProducts] = useState([]);
-  const [perPage, setPerPage] = useState(8);
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const newPaginatedProducts = products
@@ -32,50 +31,25 @@ export const ProductGrid = () => {
     return <div className="container mx-auto px-4">...loading</div>;
   }
 
-  if (error.trim().length > 0) {
-    return <div className="container mx-auto px-4">{error}</div>;
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 flex justify-center">
+        <span>Sorry, we have an error</span>
+      </div>
+    );
   }
 
-  const pageCount = Math.ceil(products.length / perPage);
-
   return (
-    <>
-      <ul className={gridCssClass}>
-        {paginatedProducts.map((product) => {
-          const { id } = product;
+    <ul className={gridCssClass}>
+      {paginatedProducts.map((product) => {
+        const { id } = product;
 
-          return (
-            <li key={id}>
-              <ProductTile product={product}></ProductTile>
-            </li>
-          );
-        })}
-      </ul>
-
-      <ul className="flex gap-2">
-        {Array(pageCount)
-          .fill(' ')
-          .map((_, index) => {
-            const pageIndex = index + 1;
-
-            return (
-              <li key={index}>
-                <button
-                  type="button"
-                  title={`Page ${pageIndex}`}
-                  className={`border border-zinc-200 p-2 hover:bg-black hover:text-white transition-colors ${
-                    pageIndex === page ? 'bg-black text-white' : ''
-                  }`}
-                  onClick={() => {
-                    setPage(pageIndex);
-                  }}
-                >
-                  {pageIndex}
-                </button>
-              </li>
-            );
-          })}
-      </ul>
-    </>
+        return (
+          <li key={id}>
+            <ProductTile product={product}></ProductTile>
+          </li>
+        );
+      })}
+    </ul>
   );
 };

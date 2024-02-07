@@ -7,7 +7,7 @@ import { FaWhatsappSquare } from 'react-icons/fa';
 
 export const Header = () => {
   return (
-    <div className="bg-neutral-900 text-white flex lg:flex-col justify-between items-center h-full p-4">
+    <div className="bg-neutral-900 text-white flex lg:flex-col justify-between items-center h-full p-4 relative z-20">
       {/* forced example */}
       <Link
         href="/"
