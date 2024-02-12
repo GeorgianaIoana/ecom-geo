@@ -7,8 +7,8 @@
   --desktopHeaderSize: 80px;
   --dark: theme(colors.neutral.900);
   --white: theme(colors.white);
-  --gray: theme(colors.neutral.100);
-  --aquamarine: theme(colors.yellow.300);
+  --gray: theme(colors.sky.100);
+
 }
 
 body {

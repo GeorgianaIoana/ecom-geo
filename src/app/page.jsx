@@ -8,12 +8,12 @@ import {
 export default function Home() {
   return (
     <div className="container px-4 mx-auto">
-      <header className="flex justify-end">
+      <header className="flex justify-end mb-10">
         <GridControls></GridControls>
         <CartControls></CartControls>
       </header>
 
-      <section>
+      <section className="mb-20">
         <ProductGrid></ProductGrid>
         <Pagination></Pagination>
       </section>

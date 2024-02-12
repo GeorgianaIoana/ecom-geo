@@ -21,6 +21,7 @@ export const ProductGrid = () => {
   const gridCssClass = css`
     display: grid;
     row-gap: 32px;
+    margin-bottom: 20px;
 
     @media (min-width: 1024px) {
       grid-template-columns: repeat(${itemsPerRow}, 1fr);

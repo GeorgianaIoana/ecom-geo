@@ -5,19 +5,19 @@ import { FaSquare } from 'react-icons/fa';
 import { PiSquaresFourFill } from 'react-icons/pi';
 
 const buttonClasses =
-  'flex justify-center items-center border-zinc-200 w-8 h-8 transition-colors hover:bg-neutral-900 hover:text-white';
+  'flex justify-center items-center border-zinc-200 w-14 h-14 transition-colors hover:bg-cyan-600 hover:text-white';
 
 export const GridControls = () => {
   const { itemsPerRow, setItemsPerRow } = useContext(uiContext);
 
   return (
-    <ul className="border border-zinc-200 flex rounded-xl">
+    <ul className="border border-zinc-200 hidden lg:flex rounded-xl">
       <li>
         <button
           type="button"
           title="One per row"
-          className={`text-xl ${buttonClasses} ${
-            itemsPerRow === '1' ? 'bg-neutral-900 text-white' : ''
+          className={`text-xl rounded-s-xl ${buttonClasses} ${
+            itemsPerRow === '1' ? 'bg-cyan-600 text-white' : ''
           }`}
           onClick={() => {
             setItemsPerRow('1');
@@ -32,7 +32,7 @@ export const GridControls = () => {
           type="button"
           title="Two per row"
           className={`text-xs border-l ${buttonClasses} ${
-            itemsPerRow === '2' ? 'bg-neutral-900 text-white' : ''
+            itemsPerRow === '2' ? 'bg-cyan-600 text-white' : ''
           }`}
           onClick={() => {
             setItemsPerRow('2');
@@ -46,8 +46,8 @@ export const GridControls = () => {
         <button
           type="button"
           title="Four per row"
-          className={`text-2xl border-l ${buttonClasses} ${
-            itemsPerRow === '4' ? 'bg-neutral-900 text-white' : ''
+          className={`text-2xl rounded-e-xl border-l ${buttonClasses} ${
+            itemsPerRow === '4' ? 'bg-cyan-600 text-white' : ''
           }`}
           onClick={() => {
             setItemsPerRow('4');

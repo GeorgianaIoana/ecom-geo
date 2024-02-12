@@ -80,7 +80,7 @@ export const FooterPrimary = () => {
                 <Link
                   href={`tel:${phone}`}
                   title="Give us a call!"
-                  className="lg:hover:text-[var(--aquamarine)]"
+                  className="lg:hover:text-cyan-500"
                 >
                   {phone}
                 </Link>
@@ -89,7 +89,7 @@ export const FooterPrimary = () => {
                 <Link
                   href={`mailto:${email}`}
                   title="Email us"
-                  className="lg:hover:text-[var(--aquamarine)]"
+                  className="lg:hover:text-cyan-500"
                 >
                   {email}
                 </Link>
@@ -112,7 +112,7 @@ export const FooterPrimary = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       title={title}
-                      className="lg:hover:text-[var(--aquamarine)]"
+                      className="lg:hover:text-cyan-500"
                     >
                       {label}
                     </Link>

@@ -22,7 +22,7 @@ export const Pagination = () => {
   const pageCount = Math.ceil(total / perPage);
 
   return (
-    <ul className="flex gap-2">
+    <ul className="flex gap-2 px-10 justify-end">
       {Array(pageCount)
         .fill(' ')
         .map((_, index) => {
@@ -32,9 +32,9 @@ export const Pagination = () => {
               <button
                 type="button"
                 title={`Page ${pageIndex}`}
-                className={`border border-zinc-200 p-2 hover:bg-black hover:text-white transition-colors ${
-                  pageIndex === page ? 'bg-black text-white' : ''
-                }`}
+                className={`border border-zinc-200 px-2 hover:bg-cyan-500 hover:text-white transition-colors ${
+                  pageIndex === page ? 'bg-cyan-600 text-white' : ''
+                } rounded-full text-sm`}
                 onClick={() => {
                   setPagination({
                     ...pagination,

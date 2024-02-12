@@ -1,5 +1,7 @@
 import { PiArrowCircleUpBold } from 'react-icons/pi';
 import { useEffect } from 'react';
+import { GiLaurelCrown } from 'react-icons/gi';
+
 export const BackToTopButton = () => {
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -15,9 +17,9 @@ export const BackToTopButton = () => {
       type="button"
       title="Back to top"
       onClick={backToTop}
-      className="hover:text-[var(--aquamarine)]"
+      className="hover:text-amber-400"
     >
-      <PiArrowCircleUpBold></PiArrowCircleUpBold>
+      <GiLaurelCrown></GiLaurelCrown>
     </button>
   );
 };
