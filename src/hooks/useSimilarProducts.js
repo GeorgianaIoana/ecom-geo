@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
 import { baseUrl } from '..';
-export const useCart = (cartId = 2) => {
-  const [cartProducts, setCartProducts] = useState([]);
+
+export const useSimilarProducts = (category) => {
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
   useEffect(() => {
-    fetch(`${baseUrl}/carts/${cartId}`)
+    fetch(`${baseUrl}/products/category/${category}`)
       .then((response) => {
         return response.json();
       })
-      .then((cart) => {
-        const { products } = cart;
+      .then((products) => {
+        setProducts(products);
         setLoading(false);
-        setCartProducts(products);
       })
       .catch((error) => {
         console.dir(error);
         setLoading(false);
         setError('An error has occured');
       });
-  }, [cartId]);
+  }, [category]);
 
-  return { cartProducts, loading, error, setCartProducts };
+  return { products, loading, error };
 };

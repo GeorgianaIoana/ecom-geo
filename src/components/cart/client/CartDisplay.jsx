@@ -2,14 +2,27 @@ import { cartContext } from '@/contexts';
 import { useContext } from 'react';
 import { CartLineItem } from '.';
 import { Spinner } from '@/components/ui/client';
+import { BackToShop } from '@/components/ui/server';
 export const CartDisplay = () => {
   const { cartProducts, loading } = useContext(cartContext);
   // insert loader style as homework
   if (loading) {
     //  please add spinner
     return (
-      <div className="h-full flex justify-center items-center">
+      <div className="flex justify-center items-center">
         <Spinner></Spinner>;
+      </div>
+    );
+  }
+
+  if (cartProducts.length === 0) {
+    return (
+      <div className="h-full grid grid-rows-2 text-2xl text-cyan-600 items-end justify-center">
+        <div>There is no product here.</div>
+        <div className="flex gap-2 items-center self-start pt-2">
+          <span>Please, go back to shop</span>
+          <BackToShop></BackToShop>
+        </div>
       </div>
     );
   }

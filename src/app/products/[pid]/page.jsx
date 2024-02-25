@@ -1,4 +1,5 @@
 import { AddToCart, CartControls } from '@/components/cart/client';
+import { SimilarProducts } from '@/components/catalog/client';
 import { BackToShop, StarsRating } from '@/components/ui/server';
 import { baseUrl } from '@/index';
 import Image from 'next/image';
@@ -18,16 +19,16 @@ export default async function ProductPage({ params }) {
   const productId = params.pid;
   const product = await getProduct(productId);
   const { image: imageUrl, price, description, title, rating } = product;
-  const { rate, count } = rating;
+  const { count } = rating;
 
   return (
-    <div className="container px-4 mx-auto">
+    <div className="container px-4 mx-auto mb-32">
       <header className="flex justify-between">
         <BackToShop></BackToShop>
         <CartControls></CartControls>
       </header>
 
-      <section className="flex items-center mt-16 mb-32">
+      <section className="flex items-center mt-16 mb-20 border-b pb-16">
         <div className="w-3/5">
           <Image
             width={200}
@@ -66,7 +67,12 @@ export default async function ProductPage({ params }) {
         </div>
       </section>
 
-      <section></section>
+      <section className="border-t pt-16">
+        <h1 className="pl-16 font-medium text-xl text-cyan-600 mb-8 italic">
+          Similar products
+        </h1>
+        <SimilarProducts category={product.category}></SimilarProducts>
+      </section>
     </div>
   );
 }

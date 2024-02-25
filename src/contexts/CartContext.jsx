@@ -1,4 +1,4 @@
-import { useCart } from '@/hooks';
+import { useCart } from '@/hooks/cart';
 import { createContext } from 'react';
 
 export const cartContext = createContext();
