@@ -1,4 +1,5 @@
 import { AddToCart, CartControls } from '@/components/cart/client';
+import { BackToShop, StarsRating } from '@/components/ui/server';
 import { baseUrl } from '@/index';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
@@ -21,7 +22,8 @@ export default async function ProductPage({ params }) {
 
   return (
     <div className="container px-4 mx-auto">
-      <header className="flex justify-end">
+      <header className="flex justify-between">
+        <BackToShop></BackToShop>
         <CartControls></CartControls>
       </header>
 
@@ -48,8 +50,11 @@ export default async function ProductPage({ params }) {
         <div className="w-2/5 text-neutral-900">
           <header className="ml-1">
             <h1 className="text-2xl uppercase font-semibold">{title}</h1>
-            <div>
-              <span>{rate} stars</span>
+            <div className="flex gap-4 items-center">
+              <span className="text-amber-400 text-xl">
+                <StarsRating rating={rating}></StarsRating>
+              </span>
+
               <span>({count} reviews)</span>
             </div>
           </header>

@@ -1,4 +1,3 @@
-import { PiArrowCircleUpBold } from 'react-icons/pi';
 import { useEffect } from 'react';
 import { GiLaurelCrown } from 'react-icons/gi';
 

@@ -1,24 +1,29 @@
 import { cartContext } from '@/contexts';
 import { useContext } from 'react';
 import { CartLineItem } from '.';
+import { Spinner } from '@/components/ui/client';
 export const CartDisplay = () => {
   const { cartProducts, loading } = useContext(cartContext);
   // insert loader style as homework
   if (loading) {
     //  please add spinner
-    return <>...loading</>;
+    return (
+      <div className="h-full flex justify-center items-center">
+        <Spinner></Spinner>;
+      </div>
+    );
   }
 
   return (
     <table>
-      <thead>
-        <tr>
+      <thead className="border-b h-12">
+        <tr className="uppercase text-gray-400">
           <th></th>
           <th></th>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Total</th>
+          <th className=" px-2 font-normal">Product</th>
+          <th className=" px-2 font-normal">Price</th>
+          <th className=" px-2 font-normal">Quantity</th>
+          <th className=" px-2 font-normal">Total</th>
         </tr>
       </thead>
       <tbody>
