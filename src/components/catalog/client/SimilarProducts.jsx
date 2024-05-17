@@ -2,8 +2,8 @@ import { Spinner } from '@/components/ui/client';
 import { useSimilarProducts } from '@/hooks';
 import { ProductTile } from '.';
 
-export const SimilarProducts = ({ category }) => {
-  const { products, loading } = useSimilarProducts(category);
+export const SimilarProducts = ({ category, currentProductId }) => {
+  const { products, loading } = useSimilarProducts(category, currentProductId);
 
   if (loading) {
     return (
@@ -13,13 +13,13 @@ export const SimilarProducts = ({ category }) => {
     );
   }
 
-  if (products.lentgth === 0) {
+  if (products.length === 0) {
     return <div>There are no similar products</div>;
   }
 
   return (
     <ul className="grid grid-cols-4 mb-10">
-      {products.slice(0, 4).map((product) => {
+      {products.map((product) => {
         return (
           <li key={product.id}>
             <ProductTile product={product}></ProductTile>
