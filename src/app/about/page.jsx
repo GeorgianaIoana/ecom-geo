@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import Image from 'next/image';
@@ -5,7 +6,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-const aboutPage = () => {
+const AboutPage = () => {
   const router = useRouter();
   return (
     <div className="container mx-auto">
@@ -124,4 +125,4 @@ const aboutPage = () => {
     </div>
   );
 };
-export default aboutPage;
+export default AboutPage;
