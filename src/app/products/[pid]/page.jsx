@@ -8,6 +8,9 @@ import { redirect } from 'next/navigation';
 const getProduct = async (productId) => {
   return fetch(`${baseUrl}/products/${productId}`)
     .then((response) => {
+      if (!response.ok) {
+        throw new Error('Product not found');
+      }
       return response.json();
     })
     .catch(() => {
@@ -18,14 +21,25 @@ const getProduct = async (productId) => {
 export default async function ProductPage({ params }) {
   const productId = params.pid;
   const product = await getProduct(productId);
-  const { image: imageUrl, price, description, title, rating } = product;
+  if (!product) {
+    redirect('/not-found');
+  }
+
+  const {
+    image: imageUrl,
+    price,
+    description,
+    title,
+    rating,
+    category,
+  } = product;
   const { count } = rating;
 
   return (
     <div className="container px-4 mx-auto mb-32">
       <header className="flex justify-between">
-        <BackToShop></BackToShop>
-        <CartControls></CartControls>
+        <BackToShop />
+        <CartControls />
       </header>
 
       <section className="flex items-center mt-16 mb-20 border-b pb-16">
@@ -45,7 +59,7 @@ export default async function ProductPage({ params }) {
               maxHeight: '100%',
             }}
             className="inline"
-          ></Image>
+          />
         </div>
 
         <div className="w-2/5 text-neutral-900">
@@ -53,16 +67,15 @@ export default async function ProductPage({ params }) {
             <h1 className="text-2xl uppercase font-semibold">{title}</h1>
             <div className="flex gap-4 items-center">
               <span className="text-amber-400 text-xl">
-                <StarsRating rating={rating}></StarsRating>
+                <StarsRating rating={rating} />
               </span>
-
               <span>({count} reviews)</span>
             </div>
           </header>
           <p className="my-12 ml-1">{description}</p>
           <span className="font-semibold text-xl ml-1">${price}</span>
           <footer className="mt-4">
-            <AddToCart product={product}></AddToCart>
+            <AddToCart product={product} />
           </footer>
         </div>
       </section>
@@ -71,7 +84,7 @@ export default async function ProductPage({ params }) {
         <h1 className="pl-16 font-medium text-xl text-cyan-600 mb-8 italic">
           Similar products
         </h1>
-        <SimilarProducts category={product.category}></SimilarProducts>
+        <SimilarProducts category={category} currentProductId={productId} />
       </section>
     </div>
   );

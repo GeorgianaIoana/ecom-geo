@@ -11,7 +11,8 @@ export const CartLineItem = ({ product }) => {
   const { quantity, productId } = product;
   const { product: fullProduct, loading } = useProduct(productId);
   const [isRemoved, setIsRemoved] = useState(false);
-  const { removeFromCart } = useContext(cartContext);
+  const { removeFromCart, incrementQuantity, decrementQuantity } =
+    useContext(cartContext);
 
   const removeProduct = () => {
     setIsRemoved(true);
@@ -85,7 +86,23 @@ export const CartLineItem = ({ product }) => {
         </div>
       </td>
       <td className="p-2 text-center">{price}</td>
-      <td className="p-2 text-center">{quantity}</td>
+      <td className="p-2 text-center">
+        <div className="flex items-center justify-center space-x-2">
+          <button
+            onClick={() => decrementQuantity(productId)}
+            className="w-6 h-6 border rounded-full bg-white hover:bg-blue-200 flex items-center justify-center"
+          >
+            -
+          </button>
+          <span>{quantity}</span>
+          <button
+            onClick={() => incrementQuantity(productId)}
+            className="w-6 h-6 border rounded-full bg-white hover:bg-blue-200 flex items-center justify-center"
+          >
+            +
+          </button>
+        </div>
+      </td>
       <td className="p-2 text-center">{price * quantity}</td>
     </tr>
   );
